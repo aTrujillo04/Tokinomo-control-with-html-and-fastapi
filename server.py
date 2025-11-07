@@ -44,13 +44,33 @@ def wait_pir():
             print("Movement detected by PIR, initializing routine")
             hardware.luz.on()
             hardware.motor_1a.value = 0.7
-            subprocess.Popen(
-                ["mpg123", "-q", "--loop", "-1", hardware.SONIDO_PATH],
+            process = subprocess.Popen(
+                ["mpg123", "-q", hardware.SONIDO_PATH],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
-            break
-        time.sleep(0.1)
+            #Waiting for the sound
+            process.wait()
+            print("Sound finished, checking PIR status")
+
+            if not hardware.pir.motion_detected:
+                print("No movement detected, turning off devices")
+                hardware.luz.off()
+                hardware.motor_1a.value = 0
+                subprocess.run(["pkill", "mpg123"])
+                #Waiting for other detection
+                while active_routine and not hardware.pir.motion_detected:
+                    time.sleep(0.1)
+            else:
+                print("Movement still detected, continuing routine")
+        else:
+            time.sleep(0.1)
+    
+    #Definetion when the routine is deactivated by the user
+    print("Routine sttopped")
+    hardware.luz.off()
+    hardware.motor_1a.value = 0
+    subprocess.run(["pkill", "mpg123"])
 
 #Endpoint  /control defined execute the action defined for the 4 buttons.
 @app.post("/control")
@@ -132,6 +152,3 @@ app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="front
 #Main to run the app inside the server with uvicorn. Available for all the sites and listening in port 9000
 if __name__ == "__main__":  
     uvicorn.run("server:app", host="0.0.0.0", port=9000)
-
-
-
