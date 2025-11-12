@@ -249,7 +249,7 @@ Remote-Dashboard-for-Tokinomo-in-Flet/
 ├── gitignore
 ├── README.md
 ├── hardware.py
-├── requirements.py
+├── requirements.txt
 ├── server.py
 ```
 
