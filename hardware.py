@@ -3,9 +3,9 @@ from gpiozero import LED, PWMLED, MotionSensor
 
 #Established pinout
 PIN_LUZ = 22
-PIN_MOTOR_1A = 12
-PIN_PIR = 25
-PIN_ENABLE = 4
+PIN_MOTOR_1A = 13
+PIN_PIR = 17
+PIN_ENABLE = 27
 
 #Initialized variables to avoid GPIO bussy error
 luz = None
