@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hola Mundo FastAPI</title>
+
+    <style>
+        /*Estilos de página */
+        body { 
+            font-family: sans-serif; 
+            padding: 50px; 
+        }
+
+        /* Color verde para el texto que muestra la respuesta del backend */
+        .resultado { 
+            margin-top: 20px; 
+            color: green; 
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Frontend HTML</h2>
+
+    <!-- Input donde el usuario escribe su nombre -->
+    <input type="text" id="inputNombre" placeholder="Escribe tu nombre aquí">
+
+    <!-- Botón que llama a la función enviarDatos() -->
+    <button onclick="enviarDatos()">Enviar al Backend</button>
+
+    <button onclick="enviarDespedida()">Enviar Despedida</button>
+
+    <!-- Aquí se mostrará el texto que devuelva el backend -->
+    <div id="textoRespuesta" class="resultado"></div>
+
+    <script src="front.js"></script>
+
+</body>
+</html>
+
