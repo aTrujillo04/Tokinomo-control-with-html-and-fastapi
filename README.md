@@ -341,7 +341,7 @@ This means that your dashboard **cannot be mounted** in the server so you shoud:
 
 ## Contributing
 Contributions are appreciated. Please follow this steps to contribute:
-1. Clon the repository.
+1. Clone the repository.
 2. Create a new branch.
 3. Make your changes in the new branch.
 4. Commit your changes.
